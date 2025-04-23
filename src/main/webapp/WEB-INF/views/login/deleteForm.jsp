@@ -21,7 +21,7 @@ if(deleteBtn){
 	deleteBtn.addEventListener("click", e => {
 	e.preventDefault();	
 	
-  if (!confirm("진짜로 탈퇴하시겠습니까?")) return;
+  if (!confirm("진짜로 탈퇴하시겠습니까?")) return;   
 
   
   fetch("isDelete", {
