@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kosa.mini.board.BoardDAO">
+
+	<select id="getBno" resultType="org.kosa.mini.board.Board">
+		select
+		bno,
+		btitle,
+		bcontent,
+		bwriter,
+		bdate,
+		view_cnt ,
+		bpasswd,
+		deleteyn
+		from
+		mini_board
+
+		where
+		bno = #{bno}
+	</select>
+
+
+	<update id="delete">
+		update mini_board
+
+		set
+		deleteyn = 'Y'
+
+		where bno = #{bno}
+
+
+	</update>
+
+	<update id="update">
+		update mini_board
+		set
+		btitle = #{btitle},
+		bcontent = #{bcontent},
+		bdate = sysdate
+
+		where bno=#{bno}
+	</update>
+
+	<insert id="insert">
+		insert into mini_board(
+		bno,btitle,bcontent,bwriter,bdate,bpasswd
+		)
+		values(
+		seq_mini_board.NEXTVAL,#{btitle}, #{bcontent}, #{bwriter},
+		sysdate,#{bpasswd}
+
+		)
+
+
+	</insert>
+	
+	<update id="increaseViewCount">
+	update mini_board
+	set view_cnt = view_cnt+1
+	where bno = #{bno}
+	
+	</update>
+
+
+
+	<sql id="search">
+		<if test="searchValue != null and searchValue != ''">
+			and btitle LIKE concat(concat('%', #{searchValue}), '%')
+		</if>
+	</sql>
+
+	<select id="list" resultType="org.kosa.mini.board.Board">
+		SELECT
+			*
+		FROM (
+			SELECT rownum rnum, e.bno,
+			e.btitle,
+			e.bcontent,
+			e.bwriter,
+			e.bdate,
+			e.view_cnt,
+			e.deleteyn
+		FROM (
+			SELECT
+            mb.bno,
+            mb.btitle,
+            mb.bcontent,
+            mb.bwriter,
+            TO_CHAR(mb.bdate, 'YYYY-MM-DD') AS bdate,
+            mb.view_cnt,
+            mb.deleteyn
+        FROM mini_board mb
+        JOIN MINI_MEMBER mm ON mb.bwriter = mm.userid
+        WHERE mb.deleteyn = 'N'
+          AND mm.deleteyn = 'N'
+		<include refid="search" />
+
+		ORDER BY bdate DESC
+		) e
+		WHERE rownum BETWEEN 1 AND #{end}
+		) o
+		WHERE o.rnum
+		BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*)
+		FROM mini_board mb
+        JOIN MINI_MEMBER mm ON mb.bwriter = mm.userid
+		where mb.deleteyn = 'N'
+		AND mm.deleteyn = 'N'
+		<include refid="search" />
+	</select>
+</mapper>
