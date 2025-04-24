@@ -115,7 +115,7 @@
 		WHERE rownum BETWEEN 1 AND #{end}
 		) o
 		WHERE o.rnum
-		BETWEEN #{start} AND #{end}
+		BETWEEN #{start} AND #{end}  
 	</select>
 
 	<select id="getTotalCount" resultType="int">
