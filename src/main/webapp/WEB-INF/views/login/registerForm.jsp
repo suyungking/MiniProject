@@ -66,7 +66,7 @@
 						placeholder="이메일주소를 입력해주세요">
 				</div>
 				<div class="col-sm-3">
-					<input type="button" class="btn btn-secondary w-100" value="중복확인"
+					<input type="button" class="btn btn-primary w-100" value="중복확인"
 						id="validEmailButton">
 				</div>
 			</div>
