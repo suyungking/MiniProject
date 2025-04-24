@@ -23,7 +23,7 @@ if(deleteBtn){
 	
   if (!confirm("진짜로 탈퇴하시겠습니까?")) return;   
 
-  
+ 	
   fetch("isDelete", {
     method: "post",
     headers: {'Content-Type': 'application/json;charset=utf-8'},
