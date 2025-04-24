@@ -40,7 +40,7 @@ public class Member {
 
 		if (birthday == null || birthday.length() == 0)
 			return false;
-		
+
 		if (email == null || email.length() == 0)
 			return false;
 
@@ -57,5 +57,6 @@ public class Member {
 			return false;
 
 		return true;
+
 	}
 }

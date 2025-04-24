@@ -32,7 +32,7 @@ public class BoardController {
 		boolean isAdmin = "Y".equals(member.getAdmin());
 
 		model.addAttribute("pageResponse",
-				boardService.list(searchValue, Util.parseInt(pageNo, 1), Util.parseInt(size, 10),isAdmin));
+				boardService.list(searchValue, Util.parseInt(pageNo, 1), Util.parseInt(size, 10), isAdmin));
 
 		return "board/boardList";
 	}
@@ -70,16 +70,14 @@ public class BoardController {
 		if (member == null) {
 			return "redirect:/";
 		}
-		
-		Board board = boardService.getBno(bno);
-		
-		if ( !board.getBwriter().equals(member.getUserid()) && !"Y".equals(member.getAdmin())) {
-		        boardService.increaseViewCount(bno);  // 이 메서드는 직접 만들어야 함!
-		        board.setView_cnt(board.getView_cnt() + 1); // 조회수 증가 반영 (optional)
-		    }
 
-		
-		
+		Board board = boardService.getBno(bno);
+
+		if (!board.getBwriter().equals(member.getUserid()) && !"Y".equals(member.getAdmin())) {
+			boardService.increaseViewCount(bno); // 이 메서드는 직접 만들어야 함!
+			board.setView_cnt(board.getView_cnt() + 1); // 조회수 증가 반영 (optional)
+		}
+
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);
 

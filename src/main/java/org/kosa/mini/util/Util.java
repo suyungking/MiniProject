@@ -6,7 +6,8 @@ public class Util {
 			if (str != null && str.length() != 0) {
 				return Integer.parseInt(str);
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return defaultValue;
 	}
 }

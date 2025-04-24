@@ -25,7 +25,6 @@ public class BoardService {
 	}
 
 	public Board getBno(int bno) {
-		// TODO Auto-generated method stub
 		return boardDAO.getBno(bno);
 	}
 
@@ -35,12 +34,10 @@ public class BoardService {
 	}
 
 	public int delete(int bno) {
-		// TODO Auto-generated method stub
 		return boardDAO.delete(bno);
 	}
 
 	public int insert(Board board) {
-		// TODO Auto-generated method stub
 		return boardDAO.insert(board);
 	}
 

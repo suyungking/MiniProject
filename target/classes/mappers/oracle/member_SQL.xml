@@ -6,157 +6,159 @@
 
 <mapper namespace="org.kosa.mini.login.LoginDAO">
 	<select id="getMember" resultType="org.kosa.mini.login.Member">
-		select 
-			userid,
-			passwd,
-			name,
-			age,
-			TO_CHAR(birthday, 'YYYY-MM-DD') AS birthday, 
-			email,
-			phonenumber,
-			address,
-			detailaddress,
-			sex,
-			habit,
-			registerTime,
-			admin,
-			TO_CHAR(logintime, 'YYYY-MM-DD HH24:MI:SS') AS loginTime,
-			locked,
-			failcount,
-			deleteyn
-		from mini_member 
+		select
+		userid,
+		passwd,
+		name,
+		age,
+		TO_CHAR(birthday, 'YYYY-MM-DD') AS birthday,
+		email,
+		phonenumber,
+		address,
+		detailaddress,
+		sex,
+		habit,
+		registerTime,
+		admin,
+		TO_CHAR(logintime, 'YYYY-MM-DD HH24:MI:SS') AS loginTime,
+		locked,
+		failcount,
+		deleteyn
+		from mini_member
 		where userid = #{userid}
 	</select>
-	
+
 	<select id="vailedUserid" resultType="String">
-	SELECT userid 
-	FROM mini_member 
-	WHERE userid = #{userid}
-</select>
+		SELECT userid
+		FROM mini_member
+		WHERE userid = #{userid}
+	</select>
 
 	<select id="vailedEmail" resultType="String">
-	SELECT email 
-	FROM mini_member 
-	WHERE email = #{email}
-</select>
-	
+		SELECT email
+		FROM mini_member
+		WHERE email = #{email}
+	</select>
+
 	<update id="setLoginTime" parameterType="String">
-		update mini_member set 
-		   logintime = sysdate
+		update mini_member set
+		logintime = sysdate
 		where userid = #{userid}
-	</update> 
-	 	
-	<update id="update">
-		update mini_member set 
-			passwd = #{passwd},
-			name = #{name},
-			age = #{age},
-			phonenumber = #{phonenumber},
-			address = #{address},
-			detailaddress = #{detailaddress},
-			sex = #{sex},
-			habit = #{habit},
-			birthday = TO_DATE(#{birthday}, 'YYYY-MM-DD')
-		where userid= #{userid}	
-	</update>
-	
-	
-	
-	<update id="admin" parameterType="String">
-		update mini_member 
-		set admin = 'Y' 
-		where userid = #{userid}
-	</update> 
-	
-	
-	<update id="clear" parameterType="String">
-		update mini_member 
-		set locked = 'N',
-			passwd = '1004',
-			failcount = 0
-		where userid = #{userid}
-	</update> 
-	
-	<update id="failUser">
-		update mini_member set 
-			failcount = #{failcount},
-			locked = #{locked}
-		where userid= #{userid}	
 	</update>
 
-	
+	<update id="update">
+		update mini_member set
+		passwd = #{passwd},
+		name = #{name},
+		age = #{age},
+		phonenumber = #{phonenumber},
+		address = #{address},
+		detailaddress = #{detailaddress},
+		sex = #{sex},
+		habit = #{habit},
+		birthday = TO_DATE(#{birthday}, 'YYYY-MM-DD')
+		where userid= #{userid}
+	</update>
+
+
+
+	<update id="admin" parameterType="String">
+		update mini_member
+		set admin = 'Y'
+		where userid = #{userid}
+	</update>
+
+
+	<update id="clear" parameterType="String">
+		update mini_member
+		set locked = 'N',
+		passwd = '1004',
+		failcount = 0
+		where userid = #{userid}
+	</update>
+
+	<update id="failUser">
+		update mini_member set
+		failcount = #{failcount},
+		locked = #{locked}
+		where userid= #{userid}
+	</update>
+
+
 	<insert id="insert">
 		insert into mini_member (
-			usernumber,userid, passwd, name, age,email,phonenumber,address,detailaddress,sex,habit,registerTime,birthday
+		usernumber,userid, passwd, name,
+		age,email,phonenumber,address,detailaddress,sex,habit,registerTime,birthday
 		) values (
-			seq_mini_number.NEXTVAL,#{userid}, #{passwd}, #{name}, #{age},#{email},#{phonenumber}
-			,#{address}
-			,#{detailaddress}
-			,#{sex}
-			,#{habit}
-			,sysdate
-			,TO_DATE(#{birthday}, 'YYYY-MM-DD')
+		seq_mini_number.NEXTVAL,#{userid}, #{passwd}, #{name}, #{age},#{email},#{phonenumber}
+		,#{address}
+		,#{detailaddress}
+		,#{sex}
+		,#{habit}
+		,sysdate
+		,TO_DATE(#{birthday}, 'YYYY-MM-DD')
 		)
 	</insert>
-	
+
 	<delete id="delete" parameterType="String">
-	update mini_member 
-		set deleteyn = 'Y' 
+		update mini_member
+		set deleteyn = 'Y'
 		where userid = #{userid}
 	</delete>
-	
-	
-	
+
+
+
 	<delete id="restoration" parameterType="String">
-	update mini_member 
-		set deleteyn = 'N' 
+		update mini_member
+		set deleteyn = 'N'
 		where userid = #{userid}
 	</delete>
-	
-	
+
+
 	<sql id="search">
-	    <if test="searchValue != null and searchValue != ''">
-	    	WHERE userid LIKE concat(concat('%', #{searchValue}), '%')
-	    </if>
+		<if test="searchValue != null and searchValue != ''">
+			WHERE userid LIKE concat(concat('%', #{searchValue}), '%')
+		</if>
 	</sql>
-	
+
 	<select id="list" resultType="org.kosa.mini.login.Member">
-		SELECT 
+		SELECT
 		*
 		FROM (
-		    SELECT rownum rnum,e.usernumber,
-	    	   e.userid,
-	    	   e.name,
-	    	   e.email,
-	    	   e.phonenumber,
-	    	   e.registertime
-		    FROM (
-		    
-			    SELECT 
-			    usernumber,
-	            userid,
-	            name,
-	            email,
-	            phonenumber,
-	            TO_CHAR(registertime, 'YYYY-MM-DD') AS registertime
-	            <!-- TO_CHAR(logintime, 'YYYY-MM-DD HH24:MI:SS') AS loginTime -->
-			    FROM mini_member 
-			    
-			    <include refid="search"/>
-			    
-			    ORDER BY usernumber
-		    ) e
-		    WHERE rownum BETWEEN 1 AND #{end}
+		SELECT rownum rnum,e.usernumber,
+		e.userid,
+		e.name,
+		e.email,
+		e.phonenumber,
+		e.registertime
+		FROM (
+
+		SELECT
+		usernumber,
+		userid,
+		name,
+		email,
+		phonenumber,
+		TO_CHAR(registertime, 'YYYY-MM-DD') AS registertime
+		<!-- TO_CHAR(logintime, 'YYYY-MM-DD HH24:MI:SS') AS loginTime -->
+		FROM mini_member
+
+		<include refid="search" />
+
+		ORDER BY usernumber
+		) e
+		WHERE rownum BETWEEN 1 AND #{end}
 		) o
-		WHERE o.rnum BETWEEN #{start} AND #{end}  
-		
+		WHERE o.rnum BETWEEN #{start} AND
+		#{end}
+
 	</select>
-	
+
 	<select id="getTotalCount" resultType="int">
 		select count(*)
 		from mini_member
-		<include refid="search"/>
-		
+		<include refid="search" />
+
 	</select>
-	
+
 </mapper>

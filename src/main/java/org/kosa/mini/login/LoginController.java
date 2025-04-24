@@ -24,7 +24,6 @@ public class LoginController {
 
 	@Autowired
 	LoginService loginService;
-	
 
 	@RequestMapping("/")
 	public String loginForm() {
@@ -36,10 +35,8 @@ public class LoginController {
 	public Map<String, Object> login(HttpSession session, @RequestBody Member member) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		// 1. 입력값 검증 (java : Controller)
 		if (member.getUserid() == null || member.getUserid().length() == 0 || member.getPasswd() == null
 				|| member.getPasswd().length() == 0) {
-			// jsp로 오류 메시지 출력
 			map.put("errorMessage", "아이디 또는 비밀번호를 입력해주세요");
 			map.put("status", "error");
 
@@ -47,14 +44,13 @@ public class LoginController {
 		}
 
 		Member dbMember = loginService.getMember(member.getUserid());
-	
-		
+
 		if (dbMember == null) {
 			map.put("errorMessage", "존재하지 않는 계정입니다.");
 			map.put("status", "error");
 			return map;
 		}
-		
+
 		if ("Y".equals(dbMember.getLocked())) {
 			map.put("errorMessage", "계정이 잠겨 있습니다. 관리자에게 문의하세요.");
 			map.put("status", "error");
@@ -65,9 +61,9 @@ public class LoginController {
 			map.put("status", "error");
 			return map;
 		}
-		
+
 		Member loginMember = loginService.login(member.getUserid(), member.getPasswd());
-		
+
 		if (loginMember != null) {
 			session.setAttribute("member", loginMember);
 			map.put("status", "ok");
@@ -120,7 +116,7 @@ public class LoginController {
 		if (memberDB == null) {
 			return "${pageContext.request.contextPath}/home";
 		}
-		
+
 		session.setAttribute("member", memberDB);
 		return "login/detailView";
 	}
@@ -251,46 +247,6 @@ public class LoginController {
 
 		return map;
 	}
-	// 관리자가 회원정보 수정하기
-//	@RequestMapping("updateForm2")
-//	public String updateForm(Model model, String userid) {
-//		// 멤버 userid를 이용하여 멤버의 상세정보를 얻는다
-//		Member member = loginService.getMember(userid);
-//		if (member == null) {
-//			return "redirect:/";
-//		}
-//
-//		model.addAttribute("member", member);
-//
-//		return "login/updateForm2";
-//	}
-//
-//	@PostMapping("update2")
-//	@ResponseBody
-//	public Map<String, Object> update2(@RequestBody Member member) throws Exception {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//
-//		if (!member.isValid()) {
-//			map.put("errorMessage", "입력값 검증 오류가 발생 했습니다.");
-//			map.put("status", "error");
-//			return map;
-//		}
-//
-//		if (member.getBirthday() != null) {
-//			LocalDate birthDate = LocalDate.parse(member.getBirthday());
-//			int age = LocalDate.now().getYear() - birthDate.getYear();
-//			member.setAge(age);
-//		}
-//
-//		Member memberInfo = loginService.update(member);
-//		if (memberInfo == null) {
-//			map.put("errorMessage", "다시입력해주세요");
-//			map.put("status", "error");
-//		} else {
-//			map.put("status", "ok");
-//		}
-//		return map;
-//	}
 
 	@RequestMapping("registerForm")
 	public String registerForm() {
@@ -312,8 +268,7 @@ public class LoginController {
 			LocalDate birthDate = LocalDate.parse(member.getBirthday());
 			int age = LocalDate.now().getYear() - birthDate.getYear();
 			member.setAge(age);
-		}
-		else {
+		} else {
 			map.put("errorMessage", "입력값 검증 오류가 발생 했습니다.");
 			map.put("status", "error");
 			return map;
