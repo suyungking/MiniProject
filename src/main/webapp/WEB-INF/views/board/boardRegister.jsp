@@ -21,7 +21,7 @@
 
 		<div class="mb-3">
 			<label for="bwriter" class="form-label">작성자</label>
-			<input type="text" id="bwriter" name="bwriter" class="form-control" value="${member.userid}" readonly>
+			<input type="text" id="bwriter" name="bwriter" class="form-control" value="${member.userid}" readonly="readonly">
 		</div>
 
 		<div class="mb-3">
@@ -29,12 +29,12 @@
 			<textarea id="bcontent" name="bcontent" class="form-control" rows="5" placeholder="내용을 입력해주세요"></textarea>
 		</div>
 
-		<div class="mb-4">
+		<div class="mb-3">
 			<label for="bpasswd" class="form-label">비밀번호</label>
-			<input type="password" id="bpasswd" name="bpasswd" class="form-control" placeholder="비밀번호를 입력해주세요">
+			<input type="password" id="bpasswd" name="bpasswd" class="form-control" placeholder="비밀번호 4자이상 입력해주세요"style="width: 250px;" >
 		</div>
 
-		<div class="d-flex justify-content-end gap-2">
+		<div class="d-flex justify-content-end gap-1">
 			<button type="submit" class="btn btn-primary">등록하기</button>
 			<button type="reset" class="btn btn-secondary">초기화</button>
 			<button type="button" class="btn btn-outline-secondary"

@@ -12,7 +12,7 @@ public class BoardService {
 	@Autowired
 	BoardDAO boardDAO;
 
-	public PageResponseVO<Board> list(String searchValue, int pageNo, int size,boolean isAdmin) {
+	public PageResponseVO<Board> list(String searchValue, int pageNo, int size,Boolean isAdmin) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pageNo-1) * size + 1);
 		map.put("end", pageNo * size);
@@ -44,6 +44,11 @@ public class BoardService {
 	public int increaseViewCount(int bno) {
 		return boardDAO.increaseViewCount(bno);
 		
+	}
+
+	public int updateRestoration(int bno) {
+		
+		return boardDAO.updateRestoration(bno);
 	}
 	
 	

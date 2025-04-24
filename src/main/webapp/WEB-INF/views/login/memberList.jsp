@@ -68,9 +68,11 @@
 				<tr class="align-middle text-nowrap small">
 					<th style="width: 60px;">번호</th>
 					<th style="width: 180px;">ID</th>
-					<th style="width: 100px;">이름</th>
+					<th style="width: 130px;">이름</th>
 					<th style="width: 180px;">이메일</th>
 					<th style="width: 180px;">가입일</th>
+					<th style="width: 180px;">최근접속</th>
+					<th style="width: 60px;">탈퇴여부</th>
 					<!-- <th style="width: 180px;">최근접속</th> -->
 
 				</tr>
@@ -85,13 +87,14 @@
 						<td>${item.name}</td>
 						<td>${item.email}</td>
 						<td>${item.registerTime}</td>
-						<%-- <td>${item.loginTime}</td> --%>
+						<td>${item.loginTime}</td>
+						<td>${item.deleteyn}</td>
 
 					</tr>
 				</c:forEach>
 				<c:if test="${empty pageResponse.list}">
 					<tr>
-						<td colspan="5">검색 결과가 없습니다</td>
+						<td colspan="7">검색 결과가 없습니다</td>
 					</tr>
 				</c:if>
 			</tbody>

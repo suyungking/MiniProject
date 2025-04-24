@@ -36,12 +36,12 @@
 		const userid = document.querySelector("#userid");   	
 		const passwd = document.querySelector("#passwd");   	
 	 	if (loginForm) {
-	 		//이벤트 핸들러 등록 
+ 
 	 		loginForm.addEventListener("submit", e => {
-				e.preventDefault();  // form의 기본 동작을 취소함.
+				e.preventDefault();
 
 				
-				//form의 하위 객체를 이름을 사용하여 접근 하는 방법
+				
 				const param = {
 					userid : userid.value,   	
 					passwd : passwd.value   	
@@ -69,44 +69,10 @@
 				})	 			
 
 					  
-		//		registerForm.submit();
+		
 	 		});
 	 	}
-	 	/* let validButton = document.querySelector("#validButton");
-	 	if (validButton) {
-	 		validButton.addEventListener("click", e => {
-	 			validClicked = true;
-	 			//아이디 중복 검사 기능 구현, 비동기 통신, JSON  
-	 			//JSON  
-	 			//문자열을 객체로 변환 -> JSON.parse()  
-	 			//객체를 문자열로 변화 -> JSON.stringify()
-				const userid = document.querySelector("#userid");
-	 			if(userid.value.length == 0) {
-	 				alert("아이디를 입력해주세요");
-	 				userid.focus();
-	 				return ;
-	 			} 
-	 			
-				fetch("isExistUserId", { 
-				  method: 'post', 
-				  headers: {
-				    'Content-Type': 'application/json;charset=utf-8'
-				  },
-				  body: JSON.stringify({userid : userid.value})
-				})
-				  .then(response => response.json())
-				  .then(json => {
-					  existUserId = json.existUserId;//서버에서 전달된 값
-					  if (existUserId) {
-						  alert("[" + userid.value + "] 해당 아이디는 사용 불가능 합니다 ")
-					  } else {
-						  alert("[" + userid.value + "] 해당 아이디는 사용 가능 합니다 ")
-					  }
-					  
-				  })	 			
-	 			
-	 		});
-	 	} */
+	 	
 	</script>
 </body>
 </html>

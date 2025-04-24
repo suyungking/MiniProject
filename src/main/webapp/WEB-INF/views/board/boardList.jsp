@@ -34,9 +34,7 @@
 				<button type="submit" class="btn btn-primary">검색</button>
 
 				<!-- 건수 선택 -->
-				<label for="size" class="form-label mb-0 ms-3 me-2">건수</label> 
-				
-				<select
+				<label for="size" class="form-label mb-0 ms-3 me-2">건수</label> <select
 					class="form-select form-select-sm me-2" id="size" name="size"
 					style="width: 80px;">
 					<c:forTokens items="10,30,50,100" delims="," var="size">
@@ -61,6 +59,7 @@
 					<th style="width: 180px;">작성자</th>
 					<th style="width: 180px;">작성일</th>
 					<th style="width: 100px;">조회수</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -70,19 +69,25 @@
 					<tr class="text-nowrap">
 
 						<td>${pageResponse.totalCount - (status.count + (pageResponse.pageNo - 1) * pageResponse.size) + 1}</td>
-						<td><a href="${pageContext.request.contextPath}/board/boardView?bno=${item.bno}"
+						<td>
+						<a
+							href="${pageContext.request.contextPath}/board/boardView?bno=${item.bno}"
 							class="text-decoration-none">${item.btitle}</a></td>
 						<td>${item.bwriter}</td>
 						<td>${item.bdate}</td>
 						<td>${item.view_cnt}</td>
+
 					</tr>
 
 				</c:forEach>
+
 				<c:if test="${empty pageResponse.list}">
 					<tr>
 						<td colspan="5">검색 결과가 없습니다</td>
 					</tr>
 				</c:if>
+
+
 			</tbody>
 		</table>
 		<c:import url="/WEB-INF/views/inc/pageNav.jsp" />

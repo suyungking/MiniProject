@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface BoardDAO {
 
+	
+
 	public List<Board> list(Map<String, Object> map);
 
 	public int getTotalCount(Map<String, Object> map);
@@ -21,4 +23,7 @@ public interface BoardDAO {
 	public int insert(Board board);
 
 	public int increaseViewCount(int bno);
+
+	public int updateRestoration(int bno);
+
 }

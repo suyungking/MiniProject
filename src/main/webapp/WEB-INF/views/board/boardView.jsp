@@ -19,9 +19,14 @@
 			<h5 class="mb-0">${board.btitle}</h5>
 		</div>
 		<div class="card-body">
+		<c:if test="${member.admin eq 'Y'}"> 
+			<p><strong>삭제여부:</strong> ${board.deleteyn}</p>
+			</c:if>
 			<p><strong>작성자:</strong> ${board.bwriter}</p>
 			<p><strong>작성일:</strong> ${board.bdate}</p>
 			<p><strong>조회수:</strong> ${board.view_cnt}</p>
+			
+			
 			<hr>
 			<p>${board.bcontent}</p>
 		</div>
@@ -34,9 +39,14 @@
 			<button class="btn btn-secondary" onclick="passwd('boardUpdate')">수정하기</button>
 		</c:when>
 
-		<c:when test="${member.admin eq 'Y'}">
-			<button class="btn btn-danger"
-				onclick="location='${pageContext.request.contextPath}/board/boardDelete?bno=${board.bno}'">삭제하기</button>
+		<c:when test="${member.admin eq 'Y' && board.deleteyn eq 'N'}">
+			<button class="btn btn-danger" onclick="location='${pageContext.request.contextPath}/board/boardDelete?bno=${board.bno}'">삭제하기</button>
+			
+		</c:when>
+		
+		<c:when test="${member.admin eq 'Y' && board.deleteyn eq 'Y'}">
+			<button class="btn btn-danger" id = "restorationButton" >복구하기</button>
+			
 		</c:when>
 	</c:choose>
 
@@ -46,6 +56,37 @@
 </div>
 
 <script>
+let restorationButton = document.querySelector("#restorationButton");
+if (restorationButton) {
+	restorationButton.addEventListener("click", e => {
+		
+		if (!confirm("게시글을 복구하시겠습니까?")) return;
+
+	
+	fetch("isRestoration", { 
+	  method: 'post', 
+	  headers: {
+	    'Content-Type': 'application/json;charset=utf-8'
+	  },
+	  body: JSON.stringify({bno : "${board.bno}"})
+	})
+	  .then(r => r.json())
+	  .then(j => {
+		  
+		  if (j.status== "error") {
+			  alert(j.errorMessage);
+			  
+		  } else {
+			  alert(" 해당 게시글을 복구했습니다.")
+			  location.reload();
+		  }
+		   
+	  })	 			
+		
+	});
+}
+
+
 function passwd(page) {
 	const passwd = prompt("게시글 비밀번호를 입력하세요:");
 	if (!passwd) return;
@@ -71,6 +112,11 @@ function passwd(page) {
 		}
 	});
 }
+
+
+
+
+
 </script>
 
 </body>

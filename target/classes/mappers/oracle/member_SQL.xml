@@ -130,7 +130,9 @@
 		e.name,
 		e.email,
 		e.phonenumber,
-		e.registertime
+		e.registertime,
+		e.loginTime,
+		e.deleteyn
 		FROM (
 
 		SELECT
@@ -139,8 +141,9 @@
 		name,
 		email,
 		phonenumber,
-		TO_CHAR(registertime, 'YYYY-MM-DD') AS registertime
-		<!-- TO_CHAR(logintime, 'YYYY-MM-DD HH24:MI:SS') AS loginTime -->
+		TO_CHAR(registertime, 'YYYY-MM-DD') AS registertime,
+		TO_CHAR(logintime, 'YYYY-MM-DD HH24:MI:SS') AS loginTime,
+		deleteyn
 		FROM mini_member
 
 		<include refid="search" />

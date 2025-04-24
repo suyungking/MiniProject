@@ -34,6 +34,11 @@
 			<textarea id="bcontent" name="bcontent" class="form-control" rows="5">${board.bcontent}</textarea>
 		</div>
 		
+		<div class="mb-3">
+			<label for="bpasswd" class="form-label">비밀번호</label>
+			<input type="password" id="bpasswd" name="bpasswd"  value="${board.bpasswd}" class="form-control" placeholder="비밀번호 4자이상 입력해주세요"style="width: 250px;" >
+		</div>
+		
 		<div class="d-flex justify-content-end gap-2">
 			<button type="submit" class="btn btn-primary">수정 완료</button>
 			<button type="button" class="btn btn-secondary" onclick="location='${pageContext.request.contextPath}/board/boardView?bno=${board.bno}'">취소</button>
@@ -51,14 +56,31 @@ if (boardUpdate) {
 		const bdate = document.querySelector("#bdate");
 		const bcontent = document.querySelector("#bcontent");
 		const bno = document.querySelector("#bno");
+		const bpasswd = document.querySelector("#bpasswd");
 
 		if (!confirm("수정하시겠습니까?")) return;
-
+		
+		if (btitle.value.trim().length === 0) {
+			alert("제목을 입력해주세요");
+			btitle.focus();
+			return;
+		}
+		if (bcontent.value.trim().length === 0) {
+			alert("내용을 입력해주세요");
+			bcontent.focus();
+			return;
+		}
+		if (bpasswd.value.trim().length < 4) {
+			alert("비밀번호는 4자 이상 입력해주세요");
+			bpasswd.focus();
+			return;
+		}
 		const param = {
-			btitle: btitle.value.trim(),
-			bdate: bdate.value.trim(),
-			bcontent: bcontent.value.trim(),
-			bno: bno.value.trim()
+			btitle: btitle.value,
+			bdate: bdate.value,
+			bcontent: bcontent.value,
+			bno: bno.value,
+			bpasswd : bpasswd.value
 		};
 
 		fetch("update", {

@@ -25,7 +25,11 @@ public class Board {
 
 		if (bcontent == null || bcontent.length() == 0)
 			return false;
-
+		
+		
+		if (bpasswd == null || bpasswd.length() == 0)
+			return false;
+		
 		return true;
 	}
 }

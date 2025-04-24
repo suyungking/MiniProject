@@ -32,7 +32,7 @@
 
   <div class="text-end">
   <c:if test="${member.deleteyn eq 'N'}">
-    <input type ="button" class ="btn btn-danger me-2" value ="계정삭제" id = "deletButton" >
+    <input type ="button" class ="btn btn-danger me-2" value ="계정삭제" id = "deletButton" >    
     <input type="button" class="btn btn-secondary me-2" value="관리자 권한 주기 " id="adminButton">
     </c:if>
     <c:if test="${member.locked eq 'Y'}">
@@ -40,7 +40,7 @@
     </c:if>
     
     <c:if test="${member.deleteyn eq 'Y'}">
-    <input type="button" class="btn btn-danger" value="탈퇴 취소 " id="restorationButton">
+    <input type="button" class="btn btn-danger" value="복구" id="restorationButton">
     </c:if>
     <button type="button" class="btn btn-outline-secondary ms-2" onclick="history.back()">이전</button>
     
@@ -124,7 +124,7 @@ let adminButton = document.querySelector("#adminButton");
 				headers : {
 					'Content-Type': 'application/json;charset=utf-8'
 				},
-				body : JSON.stringify({userid : userid})
+				body : JSON.stringify({userid :userid })
 			})
 			.then(r=> r.json())
 			.then(j=> {
@@ -132,7 +132,7 @@ let adminButton = document.querySelector("#adminButton");
 					alert(j.errorMessage);
 				}else{
 					alert("[" + userid + "] 해당 아이디를 삭제합니다.");
-					location = "${pageContext.request.contextPath}/memberList";
+					 location.reload();
 				}
 			})
 			
@@ -156,7 +156,7 @@ let adminButton = document.querySelector("#adminButton");
 				headers : {
 					'Content-Type': 'application/json;charset=utf-8'
 				},
-				body : JSON.stringify({userid : userid})
+				body : JSON.stringify({userid :userid })
 			})
 			.then(r=> r.json())
 			.then(j=> {
@@ -164,7 +164,7 @@ let adminButton = document.querySelector("#adminButton");
 					alert(j.errorMessage);
 				}else{
 					alert("[" + userid + "] 해당 아이디를 복구합니다.");
-					location = "${pageContext.request.contextPath}/memberList";
+					 location.reload();
 				}
 			})
 			

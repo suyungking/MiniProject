@@ -11,7 +11,7 @@
 
 <div class="container mt-5">
 	<div class="card shadow-sm p-4">
-		<h2 class="mb-4 text-primary">${member.name}님 환영합니다!</h2>
+		<h2 class="mb-4 text-primary">${member.name}님 수영 게시판에 오신걸 환영합니다!</h2>
 
 		<ul class="list-group">
 			<c:if test="${member.admin == 'Y'}">

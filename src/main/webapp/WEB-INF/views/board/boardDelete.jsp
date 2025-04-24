@@ -12,8 +12,20 @@
 
 <div class="container mt-5">
 	<div class="card shadow-sm p-4">
-		<h4 class="mb-3 text-danger">${board.bwriter}님, 정말로 삭제하시겠습니까?</h4>
-		<p class="text-muted">삭제하면 게시글을 복구할 수 없습니다.</p>
+		
+		<c:choose>
+			<c:when test="${member.admin eq 'Y'}">
+				
+			<h4 class="mb-3 text-danger">정말로 삭제하시겠습니까?</h4>
+			</c:when>
+			
+		<c:otherwise>
+			<h4 class="mb-3 text-danger">${board.bwriter}님, 정말로 삭제하시겠습니까?</h4>
+				<p class="text-muted">삭제하면 게시글을 복구할 수 없습니다.</p>
+		
+		</c:otherwise>
+		</c:choose>
+		
 
 		<div class="d-flex justify-content-end gap-2 mt-4">
 			<button id="deleteButton" class="btn btn-danger">삭제하기</button>

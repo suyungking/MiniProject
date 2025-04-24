@@ -110,11 +110,11 @@ public class LoginController {
 		// 1. 세션있는 멤버 정보를 출력하는 방법
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "${pageContext.request.contextPath}/home";
+			return "redirect:/home";
 		}
 		Member memberDB = loginService.getMember(member.getUserid());
 		if (memberDB == null) {
-			return "${pageContext.request.contextPath}/home";
+			return "redirect:/home";
 		}
 
 		session.setAttribute("member", memberDB);
@@ -126,13 +126,13 @@ public class LoginController {
 		// 세션에서 멤버 정보를 얻는다 -> 목적 : userid를 얻는다
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "${pageContext.request.contextPath}/home";
+			return "redirect:/home";
 		}
 
 		// 멤버 userid를 이용하여 멤버의 상세정보를 얻는다
 		Member memberInfo = loginService.getMember(member.getUserid());
 		if (memberInfo == null) {
-			return "${pageContext.request.contextPath}/home";
+			return "redirect:/home";
 		}
 
 		model.addAttribute("member", memberInfo);
@@ -163,13 +163,13 @@ public class LoginController {
 		// 세션에서 멤버 정보를 얻는다 -> 목적 : userid를 얻는다
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "${pageContext.request.contextPath}/home";
+			return "redirect:/home";
 		}
 
 		// 멤버 userid를 이용하여 멤버의 상세정보를 얻는다
 		Member memberInfo = loginService.getMember(member.getUserid());
 		if (memberInfo == null) {
-			return "${pageContext.request.contextPath}/home";
+			return "redirect:/home";
 		}
 
 		model.addAttribute("member", memberInfo);
@@ -216,7 +216,7 @@ public class LoginController {
 		// 멤버 userid를 이용하여 멤버의 상세정보를 얻는다
 		Member getMember = loginService.getMember(member.getUserid());
 		if (getMember == null) {
-			return "redirect:/";
+			return "redirect:/detailView";
 		}
 
 		model.addAttribute("member", getMember);

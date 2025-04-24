@@ -30,10 +30,11 @@ public class BoardController {
 			return "redirect:/";
 		}
 		boolean isAdmin = "Y".equals(member.getAdmin());
-
+		
+		
 		model.addAttribute("pageResponse",
-				boardService.list(searchValue, Util.parseInt(pageNo, 1), Util.parseInt(size, 10), isAdmin));
-
+				boardService.list(searchValue, Util.parseInt(pageNo, 1), Util.parseInt(size, 10),isAdmin));
+		
 		return "board/boardList";
 	}
 
@@ -44,7 +45,7 @@ public class BoardController {
 		if (member == null) {
 			return "redirect:/";
 		}
-
+		model.addAttribute("member", member);
 		return "board/boardRegister";
 	}
 
@@ -54,7 +55,7 @@ public class BoardController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (!board.isValid()) {
 			map.put("status", "error");
-			map.put("errorMessage", "제목,타이틀이 없습니다.");
+			map.put("errorMessage", "다시작성해주세요");
 			return map;
 		}
 		boardService.insert(board);
@@ -99,21 +100,21 @@ public class BoardController {
 
 	@RequestMapping("/update")
 	@ResponseBody
-	public Map<String, Object> update(Model model, HttpSession session, @RequestBody Board board) {
+	public Map<String, Object> update(Model model, @RequestBody Board board) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (!board.isValid()) {
-			map.put("errorMessage", "다시입력해주세요");
+			map.put("errorMessage", "다시작성해주세요");
 			map.put("status", "error");
 			return map;
 		}
 
 		Board upBoard = boardService.update(board);
 		if (upBoard == null) {
-			map.put("errorMessage", "다시입력해주세요");
+			map.put("errorMessage", "다시작성해주세요");
 			map.put("status", "error");
 		} else {
 			map.put("status", "ok");
-			model.addAttribute("board", upBoard);
+//			model.addAttribute("board", upBoard);
 		}
 
 		return map;
@@ -156,6 +157,7 @@ public class BoardController {
 			return "${pageContext.request.contextPath}/board/boardView";
 		}
 		model.addAttribute("board", board);
+		model.addAttribute("member", member);
 		return "/board/boardDelete";
 	}
 
@@ -175,5 +177,22 @@ public class BoardController {
 		return map;
 
 	}
+	
+	
+	@PostMapping("/isRestoration")
+	@ResponseBody
+	public Map<String, Object> isRestoration(@RequestBody Board board) {
+		Map<String, Object> map = new HashMap<String, Object>();
 
+		int restoration = boardService.updateRestoration(board.getBno());
+		if (restoration == 0) {
+			map.put("errorMessage", "게시글복구에 실패했습니다..");
+			map.put("status", "error");
+
+		} else {
+			map.put("status", "ok");
+		}
+		return map;
+
+	}
 }

@@ -16,6 +16,8 @@ public class PageResponseVO<T> {
 
 	private int pageNo = 0; // 현재 페이지번호
 	private int size = 10; // 한 페이지 출력되는 자료의 건수
+	
+	private String isAdmin ;
 
 	public PageResponseVO(int pageNo, List<T> list, int totalCount, int size) {
 
@@ -23,7 +25,7 @@ public class PageResponseVO<T> {
 		this.pageNo = pageNo;
 		this.list = list;
 		this.size = size;
-
+		
 		// 2. (전제 건수 / 10)의 값을 올림 -> 전체페이지수
 		totalPage = (int) Math.ceil((double) totalCount / size);
 
