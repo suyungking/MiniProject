@@ -21,7 +21,7 @@
     </div>
 
     <div class="mb-3">
-      <label for="passwd" class="form-label">비밀번호</label>
+      <label for="passwd" class="form-label">비밀번호 </label>
       <input type="password" class="form-control" id="passwd" name="passwd" required placeholder="비밀번호를 입력해주세요">
     </div>
 <input type="hidden" id="page" value="${page}">
@@ -31,7 +31,7 @@
   </form>
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript" >
 
 let vailedLogin = document.querySelector("#vailedLogin");
 const userid = document.querySelector("#userid");

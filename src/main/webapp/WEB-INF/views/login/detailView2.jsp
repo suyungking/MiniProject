@@ -32,7 +32,7 @@
 
   <div class="text-end">
   <c:if test="${member.deleteyn eq 'N'}">
-    <input type ="button" class ="btn btn-danger me-2" value ="계정삭제" id = "deletButton">
+    <input type ="button" class ="btn btn-danger me-2" value ="계정삭제" id = "deletButton" >
     <input type="button" class="btn btn-secondary me-2" value="관리자 권한 주기 " id="adminButton">
     </c:if>
     <c:if test="${member.locked eq 'Y'}">

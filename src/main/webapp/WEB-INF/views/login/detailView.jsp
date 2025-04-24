@@ -1,32 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>상세정보</title>
-</head>
-<body>
-아이디 : ${member.userid} <br/>
-이름  : ${member.name} <br/>
-나이  : ${member.age} <br/>
-이메일 : ${member.email} <br/>
-휴대전화 : ${member.phonenumber} <br/>
-주소 : ${member.address} <br/>
-상세주소 : ${member.detailaddress} <br/>
-성별 : ${member.sex} <br/>
-취미 : ${member.habit} <br/>
-최근로그인일시  : ${member.loginTime} <br/>
-
-<a href="${pageContext.request.contextPath}/home">메인</a>
-
-<a href="vailedLogin?userid=${member.userid}">수정</a>
-</body>
-</html>
- --%>
- 
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

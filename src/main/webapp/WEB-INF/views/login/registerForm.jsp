@@ -30,7 +30,7 @@
       <div class="mb-3 row">
         <label for="passwd" class="col-sm-2 col-form-label">비밀번호</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요">
+          <input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요" >
         </div>
       </div>
 

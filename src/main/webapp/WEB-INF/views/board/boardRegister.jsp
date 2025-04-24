@@ -94,6 +94,7 @@ if (boardInsert) {
 		});
 	});
 }
+
 </script>
 
 </body>

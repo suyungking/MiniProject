@@ -37,7 +37,7 @@ if(deleteBtn){
 	  }
 	  else{
     alert("탈퇴 처리 완료");
-    location = "${pageContext.request.contextPath}/"; 
+    location = "${pageContext.request.contextPath}/" ; 
     } // 홈으로
   })
 });

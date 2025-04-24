@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,7 +16,7 @@
   
   <form name="loginForm" id="loginForm">
     <div class="mb-3">
-      <label for="userid" class="form-label">아이디</label>
+      <label for="userid" class="form-label" >아이디</label>
       <input type="text" class="form-control" id="userid" name="userid" required placeholder="아이디를 입력해주세요">
     </div>
     
