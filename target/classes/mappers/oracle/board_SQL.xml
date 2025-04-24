@@ -17,8 +17,9 @@
 		bpasswd,
 		deleteyn
 		from
-		mini_board
-
+		mini_board	
+		
+		
 		where
 		bno = #{bno}
 	</select>
