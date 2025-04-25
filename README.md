@@ -55,3 +55,7 @@ MSA기반 Full Stack 교육과정 중 진행한 미니 프로젝트로 스프링
 <img width="830" alt="스크린샷 2025-04-24 오후 11 27 56" src="https://github.com/user-attachments/assets/73610e60-695d-4b32-aefc-42d093732a23" />
 
 ## 구현 시연
+
+## 느낀점
+- 변수명 설정이 중요허더 생각이 든다.
+
