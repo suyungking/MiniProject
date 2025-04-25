@@ -1,8 +1,0 @@
-eclipse.preferences.version=1
-encoding//src/main/java/org/kosa/mini/login/HomeController.java=UTF-8
-encoding//src/main/java/org/kosa/mini/login/LoginController.java=UTF-8
-encoding//src/main/java/org/kosa/mini/login/LoginDAO.java=UTF-8
-encoding//src/main/java/org/kosa/mini/login/LoginService.java=UTF-8
-encoding//src/main/java/org/kosa/mini/login/Member.java=UTF-8
-encoding//src/main/webapp/WEB-INF/views/login/home.jsp=UTF-8
-encoding/<project>=UTF-8
