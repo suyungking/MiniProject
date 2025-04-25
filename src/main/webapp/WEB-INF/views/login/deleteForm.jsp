@@ -22,6 +22,7 @@
   </div>
 </div>
 
+
 <script>
 let deleteBtn = document.querySelector("#deleteBtn");
 
