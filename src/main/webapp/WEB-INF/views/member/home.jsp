@@ -16,12 +16,12 @@
 		<ul class="list-group">
 			<c:if test="${member.admin == 'Y'}">
 				<li class="list-group-item">
-					<a class="text-decoration-none" href="memberList">회원 목록 보기</a>
+					<a class="text-decoration-none" href="${pageContext.request.contextPath}/member/memberList">회원 목록 보기</a>
 				</li>
 			</c:if>
 			
 			<li class="list-group-item">
-				<a class="text-decoration-none" href="${pageContext.request.contextPath}/detailView">내 정보 보기</a>
+				<a class="text-decoration-none" href="${pageContext.request.contextPath}/member/detailView">내 정보 보기</a>
 			</li>
 			
 			<li class="list-group-item">

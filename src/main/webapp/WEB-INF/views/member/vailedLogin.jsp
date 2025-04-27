@@ -64,7 +64,7 @@ if(vailedLogin){
         }
         else{
             alert("성공입니다");
-            location = "${pageContext.request.contextPath}/" + page;
+            location = "${pageContext.request.contextPath}/member/" + page;
         }
     })
 

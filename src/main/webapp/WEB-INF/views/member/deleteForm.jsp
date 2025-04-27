@@ -18,7 +18,7 @@
 
   <div class="d-flex justify-content-center gap-3 mt-4">
     <button id="deleteBtn" class="btn btn-danger">탈퇴하기</button>
-    <button onclick="location = '${pageContext.request.contextPath}/detailView'" class="btn btn-secondary">취소</button>
+    <button onclick="location = '${pageContext.request.contextPath}/member/detailView'" class="btn btn-secondary">취소</button>
   </div>
 </div>
 
@@ -44,7 +44,7 @@ if(deleteBtn){
 	  }
 	  else{
       alert("탈퇴 처리 완료");
-      location = "${pageContext.request.contextPath}/"; 
+      location = "${pageContext.request.contextPath}/login/"; 
     }
   })
 });

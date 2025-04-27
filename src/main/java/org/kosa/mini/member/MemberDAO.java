@@ -1,4 +1,4 @@
-package org.kosa.mini.login;
+package org.kosa.mini.member;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface LoginDAO {
+public interface MemberDAO {
 	public Member getMember(String userid);
 
 	public void setLoginTime(String userid);
@@ -16,11 +16,11 @@ public interface LoginDAO {
 	public int failUser(Member member);
 
 	public int insert(Member member);
-
+	
 	public List<Member> list(Map<String, Object> map);
 
 	public int getTotalCount(Map<String, Object> map);
-
+	
 	public String vailedUserid(String userid);
 
 	public String vailedEmail(String email);

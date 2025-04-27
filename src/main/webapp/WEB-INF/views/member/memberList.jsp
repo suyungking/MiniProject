@@ -83,7 +83,7 @@
 					<tr class="text-nowrap">
 						<td>${status.count + (pageResponse.pageNo - 1) * pageResponse.size}</td>
 						<%-- <td>${item.userid}</td> --%>
-						<td><a href="${pageContext.request.contextPath}/detailView2?userid=${item.userid}">${item.userid}</a></td>
+						<td><a href="${pageContext.request.contextPath}/member/detailView2?userid=${item.userid}">${item.userid}</a></td>
 						<td>${item.name}</td>
 						<td>${item.email}</td>
 						<td>${item.registerTime}</td>
@@ -105,7 +105,7 @@
 		<!-- 버튼 -->
 		<div class="text-end">
 
-			<a href="${pageContext.request.contextPath}/home"
+			<a href="${pageContext.request.contextPath}/member/home"
 				class="btn btn-outline-primary">이전</a>
 		</div>
 
@@ -117,7 +117,7 @@
     const searchValue = document.querySelector("#searchValue");
 
     size.addEventListener("change", () => {
-        location = "memberList?pageNo=1&size=" + size.value + "&searchValue=" + searchValue.value;
+        location = "member/memberList?pageNo=1&size=" + size.value + "&searchValue=" + searchValue.value;
     });
 
     function pageMove(pageNo) {

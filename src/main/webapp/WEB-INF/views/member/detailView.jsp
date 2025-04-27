@@ -35,7 +35,7 @@
  </c:if>
  
     <a href="vailedLogin?page=updateForm" class="btn btn-secondary me-2">내정보 수정</a>
-    <a href="${pageContext.request.contextPath}/home" class="btn btn-outline-primary">이전</a>
+    <a href="${pageContext.request.contextPath}/member/home" class="btn btn-outline-primary">이전</a>
     
   </div>
 </div>

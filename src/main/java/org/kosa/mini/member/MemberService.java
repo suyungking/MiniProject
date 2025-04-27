@@ -1,20 +1,21 @@
-package org.kosa.mini.login;
+package org.kosa.mini.member;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.kosa.mini.member.Member;
 import org.kosa.mini.page.PageResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginService {
+public class MemberService {
 	@Autowired
-	private LoginDAO loginDAO;
+	private MemberDAO memberDAO;
 
 	public Member login(String userid, String passwd) {
 		int failCount = 0;
-		Member member = loginDAO.getMember(userid);
+		Member member = memberDAO.getMember(userid);
 		if (member == null)
 			return null;
 
@@ -30,20 +31,21 @@ public class LoginService {
 			} else {
 				member.setLocked("N");
 			}
-			loginDAO.failUser(member);
+			memberDAO.failUser(member);
 			return null;
 		}
 
 		member.setFailcount(0);
 		member.setLocked("N");
-		loginDAO.failUser(member);
-		loginDAO.setLoginTime(userid);
+		memberDAO.failUser(member);
+		memberDAO.setLoginTime(userid);
 
 		return member;
 	}
 
+	
 	public Member vailed(String userid, String passwd) {
-		Member member = loginDAO.getMember(userid);
+		Member member = memberDAO.getMember(userid);
 		if (member == null)
 			return null;
 
@@ -54,53 +56,54 @@ public class LoginService {
 	}
 
 	public Member getMember(String userid) {
-		return loginDAO.getMember(userid);
-	}
-
-	public String vailedUserid(String userid) {
-		return loginDAO.vailedUserid(userid);
-	}
-
-	public String vailedEmail(String email) {
-		return loginDAO.vailedEmail(email);
+		return memberDAO.getMember(userid);
 	}
 
 	public Member update(Member member) {
-		Member memberDB = loginDAO.getMember(member.getUserid());
+		Member memberDB = memberDAO.getMember(member.getUserid());
 		if (memberDB == null) {
 			return null;
 		}
-		loginDAO.update(member);
+		memberDAO.update(member);
 		return member;
 	}
 
-	public int insert(Member member) {
-		return loginDAO.insert(member);
+	
+	public String vailedUserid(String userid) {
+		return memberDAO.vailedUserid(userid);
 	}
 
+	public String vailedEmail(String email) {
+		return memberDAO.vailedEmail(email);
+	}
+
+	public int insert(Member member) {
+		return memberDAO.insert(member);
+	}
+	
 	public PageResponseVO<Member> list(String searchValue, int pageNo, int size) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", (pageNo - 1) * size + 1);
 		map.put("end", pageNo * size);
 		map.put("searchValue", searchValue);
 
-		return new PageResponseVO<Member>(pageNo, loginDAO.list(map), loginDAO.getTotalCount(map), size);
+		return new PageResponseVO<Member>(pageNo, memberDAO.list(map), memberDAO.getTotalCount(map), size);
 	}
 
 	public int admin(String userid) {
-		return loginDAO.admin(userid);
+		return memberDAO.admin(userid);
 	}
 
 	public int clear(String userid) {
-		return loginDAO.clear(userid);
+		return memberDAO.clear(userid);
 	}
 
 	public int delete(String userid) {
-		return loginDAO.delete(userid);
+		return memberDAO.delete(userid);
 	}
 
 	public int restoration(String userid) {
-		return loginDAO.restoration(userid);
+		return memberDAO.restoration(userid);
 	}
 
 }

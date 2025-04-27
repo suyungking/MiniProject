@@ -289,100 +289,13 @@
 							  alert(j.errorMessage);
 						  } else {
 							  alert("회원가입이 성공되었습니다.");
-							  location = "${pageContext.request.contextPath}/";
+							  location = "${pageContext.request.contextPath}/login/";
 						  }
 				})
 
 	 		});
 	 	}
-	 	/* 
-	 	//읽기전
-	 	let validUseridButton = document.querySelector("#validUseridButton");
-	 	if (validUseridButton) {
-	 		validUseridButton.addEventListener("click", e => {
-	 			const getUserid = document.querySelector("#userid");
-	 			const userid = getUserid.value.trim();
-	 			
-	 			if(userid.length === 0) {
-	 				alert("아이디를 입력해주세요");
-	 				getUserid.focus();
-	 				return ;
-	 			} 
-	 			if (userid.length <=8 ){
-					alert("아이디는 8자 이상 입력해주세요. ");
-					getUserid.focus();
-					return ;
-				}
-				fetch("isExistUserId", { 
-				  method: 'post', 
-				  headers: {
-				    'Content-Type': 'application/json;charset=utf-8'
-				  },
-				  body: JSON.stringify({userid : userid})
-				})
-				  .then(r => r.json())
-				  .then(j => {
-					  
-					  if (j.existUserId) {
-						  alert("[" + userid + "] 해당 아이디는 사용 불가능 합니다 ")
-					  } else {
-						  alert("[" + userid + "] 해당 아이디는 사용 가능 합니다 ")
-						  getUserid.readOnly = true;
-						  validUseridClicked = true;
-					  }
-					   
-				  })	 			
-	 			
-	 		});
-	 	}
-	 	 */
-	 	 
-	 	 
-/*		//자동으로
- 
-		 	let getUserid = document.querySelector("#userid");
-		 		if (getUserid) {
-		 			getUserid.addEventListener("input", () => {
-		 			  validUseridClicked = false;
-		 			  });
-		 			  
-		 			getUserid.addEventListener("change", e => {
-		 			
-		 			const userid = getUserid.value.trim();
-		 			
-		 			if(userid.length === 0) {
-		 				alert("아이디를 입력해주세요");
-		 				getUserid.focus();
-		 				return ;
-		 			} 
-		 			if (userid.length <=8 ){
-						alert("아이디는 8자 이상 입력해주세요. ");
-						getUserid.focus();
-						return ;
-					}
-					fetch("isExistUserId", { 
-					  method: 'post', 
-					  headers: {
-					    'Content-Type': 'application/json;charset=utf-8'
-					  },
-					  body: JSON.stringify({userid : userid})
-					})
-					  .then(r => r.json())
-					  .then(j => {
-						  
-						  if (j.existUserId) {
-							  alert("[" + userid + "] 해당 아이디는 사용 불가능 합니다 ")
-							  validUseridClicked = false;
-						  } else {
-							  alert("[" + userid + "] 해당 아이디는 사용 가능 합니다 ")
-							  
-							  validUseridClicked = true;
-						  }
-						   
-					  }); 			
-		 			
-		 		});
-		 	} */
+
 		 	
 		 	const getUserid = document.querySelector("#userid");
 		 	const validUseridButton = document.querySelector("#validUseridButton");
@@ -426,7 +339,7 @@
 		 	      } else {
 		 	    	 alert("[" + userid + "] 해당 아이디는 사용 가능 합니다");
 		 	        validUseridClicked = true;
-		 	        // getUserid.readOnly = true; // 읽기전용 처리할지 선택
+		 	       
 		 	      }
 		 	    });
 		 	  });
@@ -482,49 +395,6 @@
 		 	  });
 		 	}
 		
-	 	
-	 	/* let validEmailButton = document.querySelector("#validEmailButton");
-	 	if (validEmailButton) {
-	 		validEmailButton.addEventListener("click", e => {
-	 			const getEmail = document.querySelector("#email");
-	 			const email = getEmail.value.trim();
-	 			
-	 			const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	 			
-	 			if (email.length ==0 ){
-					alert("이메일을 입력해주세요 ");
-					getEmail.focus();
-					return ;
-				}
-	 			
-	 			if (!emailPattern.test(email)) {
-	 				alert("올바른 이메일 형식이 아닙니다.");
-	 				getEmail.focus();
-	 				return;
-	 			}
-				fetch("isExistEmail", { 
-				  method: 'post', 
-				  headers: {
-				    'Content-Type': 'application/json;charset=utf-8'
-				  },
-				  body: JSON.stringify({email : email})
-				})
-				  .then(r => r.json())
-				  .then(j => {
-					  
-					  if (j.existEmail) {
-						  alert("[" + email + "] 해당 아이디는 사용 불가능 합니다 ")
-					  } else {
-						  alert("[" + email + "] 해당 아이디는 사용 가능 합니다 ")
-						  getEmail.readOnly = true;
-						  validEmailClicked = true;
-					  }
-					   
-				  })
-				  
-	 			
-	 		});
-	 	} */
 	 
 	 	function getCheckboxes(selector) {
 	 		  var arr = [];
@@ -537,16 +407,7 @@
 
 	 		  return arr.join(",");
 	 		}
-	 	/* 
 	 	
-	 	function resetForm() {
-	 		  const form = document.querySelector("#registerForm");
-	 		  form.reset();
-	 		  document.querySelector("#userid").readOnly = false;
-	 		  document.querySelector("#email").readOnly = false;
-	 		  validUseridClicked = false;
-	 		  validEmailClicked = false;
-	 	} */
 	</script>
 </body>
 </html>

@@ -89,7 +89,7 @@ if (boardInsert) {
 				alert(j.errorMessage);
 			} else {
 				alert("등록되었습니다.");
-				location = "${pageContext.request.contextPath}/board/boardList";
+				location = "${pageContext.request.contextPath}/board/boardView?bno=" + j.bno;
 			}
 		});
 	});

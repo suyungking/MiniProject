@@ -124,7 +124,7 @@
       <div class="text-end">
         <input type="submit" class="btn btn-success" value="변경">
         <input type="reset" class="btn btn-secondary" value="초기화">
-        <button type="button" class="btn btn-outline-secondary ms-2" onclick="location = '${pageContext.request.contextPath}/detailView'">
+        <button type="button" class="btn btn-outline-secondary ms-2" onclick="location = '${pageContext.request.contextPath}/member/detailView'">
         내 정보 보기 </button>
         
       </div>
@@ -243,7 +243,7 @@
 					  passwd.focus();
 				  } else {
 					  alert("회원정보가 수정되었습니다");
-					  location = "${pageContext.request.contextPath}/detailView" ;//el 구문을 사용한 절대 경로 표기법  
+					  location = "${pageContext.request.contextPath}/member/detailView" ;  
 				  }
 			   });
 				

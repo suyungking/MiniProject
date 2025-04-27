@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.kosa.mini.login.Member;
+import org.kosa.mini.member.Member;
 import org.kosa.mini.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class BoardController {
 
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "redirect:/";
+			return "redirect:/login/";
 		}
 		boolean isAdmin = "Y".equals(member.getAdmin());
 		
@@ -43,7 +43,7 @@ public class BoardController {
 
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "redirect:/";
+			return "redirect:/login/";
 		}
 		model.addAttribute("member", member);
 		return "board/boardRegister";
@@ -60,23 +60,24 @@ public class BoardController {
 		}
 		boardService.insert(board);
 		map.put("status", "ok");
+		map.put("bno", board.getBno()); 
 
 		return map;
 
 	}
 
-	@RequestMapping("/boardView")
+	@RequestMapping("boardView")
 	public String boardView(Model model, int bno, HttpSession session) {
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "redirect:/";
+			return "redirect:/login/";
 		}
 
 		Board board = boardService.getBno(bno);
 
 		if (!board.getBwriter().equals(member.getUserid()) && !"Y".equals(member.getAdmin())) {
-			boardService.increaseViewCount(bno); // 이 메서드는 직접 만들어야 함!
-			board.setView_cnt(board.getView_cnt() + 1); // 조회수 증가 반영 (optional)
+			boardService.increaseViewCount(bno); 
+			board.setView_cnt(board.getView_cnt() + 1); 
 		}
 
 		model.addAttribute("board", board);
@@ -89,7 +90,7 @@ public class BoardController {
 	public String boardUpdate(Model model, HttpSession session, int bno) {
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "redirect:/";
+			return "redirect:/login/";
 		}
 		Board board = boardService.getBno(bno);
 
@@ -150,11 +151,11 @@ public class BoardController {
 	public String boardDelete(Model model, int bno, HttpSession session) {
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) {
-			return "redirect:/";
+			return "redirect:/login/";
 		}
 		Board board = boardService.getBno(bno);
 		if (board == null) {
-			return "${pageContext.request.contextPath}/board/boardView";
+			return "redirect:/board/boardView";
 		}
 		model.addAttribute("board", board);
 		model.addAttribute("member", member);

@@ -93,7 +93,7 @@
 		<c:import url="/WEB-INF/views/inc/pageNav.jsp" />
 
 		<div class="text-end">
-			<a href="${pageContext.request.contextPath}/home"
+			<a href="${pageContext.request.contextPath}/member/home"
 				class="btn btn-outline-primary">이전</a> <a
 				href="${pageContext.request.contextPath}/board/boardRegister"
 				class="btn btn-outline-primary">글쓰기</a>

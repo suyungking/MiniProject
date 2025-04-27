@@ -27,7 +27,7 @@
     
     <div class="d-grid gap-2">
       <button type="submit" class="btn btn-primary">로그인</button>
-      <button type="button" class="btn btn-outline-secondary" onclick="location='${pageContext.request.contextPath}/registerForm'">회원가입</button>
+      <button type="button" class="btn btn-outline-secondary" onclick="location='${pageContext.request.contextPath}/login/registerForm'">회원가입</button>
     </div>
   </form>
 </div>
@@ -64,7 +64,7 @@
 							  alert("로그인 성공했습니다.");
 //							  location = "/hello/"; //절대경로 
 //							  location = "./"; //상대 경로 
-							  location = "${pageContext.request.contextPath}/home"; //el 구문을 사용한 절대 경로 표기법  
+							  location = "${pageContext.request.contextPath}/member/home"; //el 구문을 사용한 절대 경로 표기법  
 						  }
 				})	 			
 

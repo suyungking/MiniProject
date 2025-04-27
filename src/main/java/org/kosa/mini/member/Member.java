@@ -1,4 +1,4 @@
-package org.kosa.mini.login;
+package org.kosa.mini.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
